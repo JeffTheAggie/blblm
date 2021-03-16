@@ -1,0 +1,22 @@
+---
+title: "STA 141C Final Project by, Jeffrey Ugochukwu"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(blblm)
+library(furrr)
+```
+
+Hello, so I will go through the basic documentation for the features in the `blblm` package. To explain the basics of the exported features, we shall start with the main `blblm()` function call.

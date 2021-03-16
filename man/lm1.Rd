@@ -2,10 +2,10 @@
 % Please edit documentation in R/blblm.R
 \name{lm1}
 \alias{lm1}
-\title{estimate the regression estimates based on given the number of repetitions}
+\title{compute the regression estimates for a blb dataset}
 \usage{
-lm1(formula, data, freqs)
+lm1(X, y, n)
 }
 \description{
-estimate the regression estimates based on given the number of repetitions
+compute the regression estimates for a blb dataset
 }

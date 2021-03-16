@@ -14,6 +14,7 @@ utils::globalVariables(c("."))
 
 #' @export
 blblm <- function(formula, data, m = 10, B = 5000, parallel = TRUE) {
+  set.seed(100)
   data_list <- split_data(data, m)
   estimates <- future_map(
     data_list,
@@ -32,6 +33,7 @@ blblm <- function(formula, data, m = 10, B = 5000, parallel = TRUE) {
 
 #' split data into m parts of approximated equal sizes
 split_data <- function(data, m) {
+  set.seed(100)
   idx <- sample.int(m, nrow(data), replace = TRUE)
   data %>% split(idx)
 }
