@@ -17,6 +17,10 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(blblm)
 library(furrr)
+library(bench)
 ```
 
+```{r, echo = TRUE}
+bench::mark(blblm(mpg ~ wt * hp, data = mtcars, m = 3, B = 100, parallel = TRUE), blblm(mpg ~ wt * hp, data = mtcars, m = 3, B = 100, parallel = FALSE), check = FALSE)
+```
 Hello, so I will go through the basic documentation for the features in the `blblm` package. To explain the basics of the exported features, we shall start with the main `blblm()` function call.
