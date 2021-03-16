@@ -1,4 +1,5 @@
 #' @import purrr
+#' @import furrr
 #' @import stats
 #' @importFrom magrittr %>%
 #' @details
@@ -12,12 +13,18 @@ utils::globalVariables(c("."))
 
 
 #' @export
-blblm <- function(formula, data, m = 10, B = 5000) {
+blblm <- function(formula, data, m = 10, B = 5000, parallel = TRUE) {
   data_list <- split_data(data, m)
-  estimates <- map(
+  estimates <- future_map(
     data_list,
     ~ lm_each_subsample(formula = formula, data = ., n = nrow(data), B = B))
   res <- list(estimates = estimates, formula = formula)
+  if(parallel == FALSE){
+    plan(multiprocess, workers = 1)
+  }
+  else{
+    plan(multiprocess, workers = 8)
+  }
   class(res) <- "blblm"
   invisible(res)
 }
