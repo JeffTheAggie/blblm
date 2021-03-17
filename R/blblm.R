@@ -12,6 +12,13 @@
 utils::globalVariables(c("."))
 
 
+#' @param formula
+#'
+#' @param data
+#' @param m
+#' @param B
+#' @param parallel
+#'
 #' @export
 blblm <- function(formula, data, m = 10, B = 5000, parallel = TRUE) {
   set.seed(100)
