@@ -18,7 +18,9 @@ Suggests:
     tidyverse
 Imports: 
     purrr,
-    magrittr
+    magrittr,
+    furrr,
+    future
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
