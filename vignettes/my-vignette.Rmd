@@ -20,7 +20,60 @@ library(furrr)
 library(bench)
 ```
 
+Hello, so I will go through the basic documentation for the features in the `blblm` package. To explain the basics of the exported features, we shall start with the main `blblm()` function call.
+
+To explain what this function is supposed to do, this essentially builds the linear regression model within various datasets. To go more into the source code regarding the `blblm()` function, the first thing that was necessary to do was to use `set.seed()` where it basically sets a generation of random numbers to have more consistent results when building the linear regression model. The `data_list` variable splits the data into two parts and the `estimates` variable maps the split data and the actual linear regression model function (`lm()`) to directly apply the parallelization. The if and else statements give the user a choice to set up how many CPU cores are necessary to apply the parallelization. The base case is about if there was the case that parallelization isn't applied (`parallel = FALSE`), then the function would only use one CPU core. Otherwise, it would use more than one.
+
+Another thing to mention is that this is updated from the original function for the package that's written below. The thing about the original is that it purely only ran on one CPU core since it didn't really give users the choice to actually decide if they would like implement more than one CPU core since there wasn't a setting to use parallelization, the updated version does the opposite of this by adding the `parallel = TRUE` parameter in the `blblm()` function.
+
+This would be a benchmark comparing how using the `blblm()`
+
 ```{r, echo = TRUE}
+set.seed(100)
 bench::mark(blblm(mpg ~ wt * hp, data = mtcars, m = 3, B = 100, parallel = TRUE), blblm(mpg ~ wt * hp, data = mtcars, m = 3, B = 100, parallel = FALSE), check = FALSE)
 ```
-Hello, so I will go through the basic documentation for the features in the `blblm` package. To explain the basics of the exported features, we shall start with the main `blblm()` function call.
+
+As we can see, setting parallel to FALSE will give a faster processing speed for producing the actual model. It makes sense why because setting parallel to FALSE only would require the computer to use one CPU unit, but it's still a great thing that we gave the user the choice to pick since this could use more of the computers CPU cores to process a large scale of data.
+
+This shows an example of how the `blblm()` function properly works.
+
+```{r, echo = TRUE}
+fit = blblm(mpg ~ wt * hp, data = mtcars, m = 3, B = 100, parallel = TRUE)
+fit
+```
+
+This would show how the model is fitted through using blblm as a parallelized linear regression model. 
+
+Now we're going to explain about the `print.blblm()` function. The point of this function is to basically print the results gained from the parallelized version of the linear regression model once it has been built.
+
+This is an example of the `sigma.blblm()` function which gives the parallelized version of the standard deviation for the regression model (you can also use the standard `sigma()` function).
+
+```{r, echo = TRUE}
+sigma(fit)
+```
+
+As you can see, this gives the standard deviation of our regression model using the multiple levels of processing from allowing the user to use the optimal amount of cores that exist within their computer.
+
+This is an example of the `coef.blblm()` function that calculates the coeficients of the regression model, but utilizing more of the CPU cores given through parallelization (can also use `coef()` function).
+
+```{r, echo = TRUE}
+coef(fit)
+```
+
+As we can see, the function gives us more precise values of the coefficients of the regression model through the use of CPU cores processing higher levels of data at once.
+
+This is an example of the `confint.blblm()` function that calculates the confidence interval of giving the range for the true value within the linear regression model (can also use `confint()`).
+
+```{r, echo = TRUE}
+confint(fit)
+```
+
+As we can see, the function was successfully able to compute the confidence interval values through a higher processing speed.
+
+The final function that will be showcased is the `predict.blblm()` function which predicts the closest value that could represent the true value of the predictor variable within our regression model. There will be a jump in performance due to the greater accessibility to the amount of CPU cores your computer has (can also use `predict()`).
+
+```{r, echo = TRUE}
+predict(fit, data.frame(wt = c(2.5, 3), hp = c(150, 170)), confidence = TRUE)
+```
+
+As we can see, the model was able to predict the value that was closer to the true value of our predictor variable. Overall, this package has proven itself to be very beneficial in allowing your local computer to have an easier time conducting statistical computation of values, while still using the optimal amount of processing power to work with an form of data no matter the size.
