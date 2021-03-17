@@ -2,7 +2,7 @@
 #include <RcppArmadillo.h>
 using namespace Rcpp;
 //' @title An Rcpp function that constructs a linear regression model
-//' @name fasttau
+//' @name fastlm
 //'
 //' @param X numeric vector
 //' @param y numeric vector
