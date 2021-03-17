@@ -1,7 +1,18 @@
+// [[Rcpp::depends(RcppArmadillo]]
 #include <RcppArmadillo.h>
 using namespace Rcpp;
+//' @title An Rcpp function that constructs a linear regression model
+//' @name fasttau
+//'
+//' @param X numeric vector
+//' @param y numeric vector
+//'
+//' @return numeric scalar
+//' @export
+//' @useDynLib blblm
+//' @importFrom Rcpp sourceCpp
+//'
 // [[Rcpp::export]]
-// [[Rcpp::depends(RcppArmadillo]]
 List fastLm_impl(const arma::mat& X, const arma::colvec& y){
   int n = X.n_rows, k = X.n_cols;
   arma::colvec coef = arma::solve(X, y);
