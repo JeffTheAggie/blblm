@@ -13,17 +13,17 @@ utils::globalVariables(c("."))
 
 #' @title Parallelization of Linear Regression Model
 #' @name blblm
-#' @param formula
-#' @description Linear Regression Formula
+#' @param formula linear regression model
 #'
-#' @param data
-#' @discription dataset
-#' @param m
-#' @description sample size
-#' @param B
-#' @description iterations
-#' @param parallel
-#'@description option to use parallelization
+#'
+#' @param data dataset
+#'
+#' @param m sample size
+#'
+#' @param B random iterations
+#'
+#' @param parallel chose to use parallel functions
+#'
 #' @export
 blblm <- function(formula, data, m = 10, B = 5000, parallel = TRUE) {
   set.seed(100)
@@ -87,10 +87,10 @@ blbsigma <- function(fit) {
 
 #' @title print results of blblm function
 #' @name print.blblm
-#' @param x
-#' @description number
-#' @param ...
-#' @description series of numbers
+#' @param x number
+#'
+#' @param ... add whatever you want
+#'
 #' @export
 #' @method print blblm
 print.blblm <- function(x, ...) {
@@ -101,14 +101,14 @@ print.blblm <- function(x, ...) {
 
 #' @title Finds standard deviation or regression model
 #' @name sigma.blblm
-#' @param object
-#' @description regression model
-#' @param confidence
-#' @description apply confidence interval
-#' @param level
-#' @description confidence level
-#' @param ...
-#' @description Add whatever parameters you want
+#' @param object regression model
+#'
+#' @param confidence apply confidence interval
+#'
+#' @param level confidence level
+#'
+#' @param ... Add whatever parameters you want
+#'
 #' @export
 #' @method sigma blblm
 sigma.blblm <- function(object, confidence = FALSE, level = 0.95, ...) {
@@ -127,10 +127,10 @@ sigma.blblm <- function(object, confidence = FALSE, level = 0.95, ...) {
 
 #' @title Gives coeficients of regression model
 #' @name coef.blblm
-#' @param object
-#' @description linear regression model
-#' @param ...
-#' @description add whatever parameters you want
+#' @param object regression model
+#'
+#' @param ... add whatever you want
+#'
 #' @export
 #' @method coef blblm
 coef.blblm <- function(object, ...) {
@@ -141,14 +141,14 @@ coef.blblm <- function(object, ...) {
 
 #' @title parallelized confidence intervals
 #' @name confint.blblm
-#' @param object
-#' @description linear regression model
-#' @param parm
-#' @description parameter values of confidence interval
-#' @param level
-#' @description confidence level
-#' @param ...
-#' @description add whatever paramters you want
+#' @param object linear regression model
+#'
+#' @param parm parameters for confidence interval
+#'
+#' @param level confidence level
+#'
+#' @param ... add whatever parameters you want
+#'
 #'
 #' @export
 #' @method confint blblm
@@ -170,16 +170,16 @@ confint.blblm <- function(object, parm = NULL, level = 0.95, ...) {
 
 #' @title gives estimated predictor value of linear regression model
 #' @name predict.blblm
-#' @param object
-#' @description linear regression model
-#' @param new_data
-#' @description new dataset
-#' @param confidence
-#' @description choice to apply confidence interval calculations
-#' @param level
-#' @description confidence level
-#' @param ...
-#' @description add whatever parameters you want
+#' @param object linear regression model
+#'
+#' @param new_data new dataset
+#'
+#' @param confidence choice to apply confidence interval calculations
+#'
+#' @param level confidence level
+#'
+#' @param ... add whatever parameters you want
+#'
 #' @export
 #' @method predict blblm
 predict.blblm <- function(object, new_data, confidence = FALSE, level = 0.95, ...) {
