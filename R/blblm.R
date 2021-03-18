@@ -128,9 +128,9 @@ sigma.blblm <- function(object, confidence = FALSE, level = 0.95, ...) {
 #' @title Gives coeficients of regression model
 #' @name coef.blblm
 #' @param object
-#' @description
+#' @description linear regression model
 #' @param ...
-#'
+#' @description add whatever parameters you want
 #' @export
 #' @method coef blblm
 coef.blblm <- function(object, ...) {
@@ -139,11 +139,16 @@ coef.blblm <- function(object, ...) {
 }
 
 
+#' @title parallelized confidence intervals
+#' @name confint.blblm
 #' @param object
-#'
+#' @description linear regression model
 #' @param parm
+#' @description parameter values of confidence interval
 #' @param level
+#' @description confidence level
 #' @param ...
+#' @description add whatever paramters you want
 #'
 #' @export
 #' @method confint blblm
@@ -163,13 +168,18 @@ confint.blblm <- function(object, parm = NULL, level = 0.95, ...) {
   out
 }
 
+#' @title gives estimated predictor value of linear regression model
+#' @name predict.blblm
 #' @param object
-#'
+#' @description linear regression model
 #' @param new_data
+#' @description new dataset
 #' @param confidence
+#' @description choice to apply confidence interval calculations
 #' @param level
+#' @description confidence level
 #' @param ...
-#'
+#' @description add whatever parameters you want
 #' @export
 #' @method predict blblm
 predict.blblm <- function(object, new_data, confidence = FALSE, level = 0.95, ...) {
