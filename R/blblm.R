@@ -11,14 +11,19 @@
 # from https://github.com/jennybc/googlesheets/blob/master/R/googlesheets.R
 utils::globalVariables(c("."))
 
-
+#' @title Parallelization of Linear Regression Model
+#' @name blblm
 #' @param formula
+#' @description Linear Regression Formula
 #'
 #' @param data
+#' @discription dataset
 #' @param m
+#' @description sample size
 #' @param B
+#' @description iterations
 #' @param parallel
-#'
+#'@description option to use parallelization
 #' @export
 blblm <- function(formula, data, m = 10, B = 5000, parallel = TRUE) {
   set.seed(100)
@@ -80,11 +85,12 @@ blbsigma <- function(fit) {
   sqrt(sum(w * (e^2)) / (sum(w) - p))
 }
 
-
+#' @title print results of blblm function
+#' @name print.blblm
 #' @param x
-#'
+#' @description number
 #' @param ...
-#'
+#' @description series of numbers
 #' @export
 #' @method print blblm
 print.blblm <- function(x, ...) {
@@ -93,12 +99,16 @@ print.blblm <- function(x, ...) {
 }
 
 
+#' @title Finds standard deviation or regression model
+#' @name sigma.blblm
 #' @param object
-#'
+#' @description regression model
 #' @param confidence
+#' @description apply confidence interval
 #' @param level
+#' @description confidence level
 #' @param ...
-#'
+#' @description Add whatever parameters you want
 #' @export
 #' @method sigma blblm
 sigma.blblm <- function(object, confidence = FALSE, level = 0.95, ...) {
@@ -115,8 +125,10 @@ sigma.blblm <- function(object, confidence = FALSE, level = 0.95, ...) {
   }
 }
 
+#' @title Gives coeficients of regression model
+#' @name coef.blblm
 #' @param object
-#'
+#' @description
 #' @param ...
 #'
 #' @export
