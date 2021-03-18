@@ -81,6 +81,10 @@ blbsigma <- function(fit) {
 }
 
 
+#' @param x
+#'
+#' @param ...
+#'
 #' @export
 #' @method print blblm
 print.blblm <- function(x, ...) {
@@ -89,6 +93,12 @@ print.blblm <- function(x, ...) {
 }
 
 
+#' @param object
+#'
+#' @param confidence
+#' @param level
+#' @param ...
+#'
 #' @export
 #' @method sigma blblm
 sigma.blblm <- function(object, confidence = FALSE, level = 0.95, ...) {
@@ -105,6 +115,10 @@ sigma.blblm <- function(object, confidence = FALSE, level = 0.95, ...) {
   }
 }
 
+#' @param object
+#'
+#' @param ...
+#'
 #' @export
 #' @method coef blblm
 coef.blblm <- function(object, ...) {
@@ -113,6 +127,12 @@ coef.blblm <- function(object, ...) {
 }
 
 
+#' @param object
+#'
+#' @param parm
+#' @param level
+#' @param ...
+#'
 #' @export
 #' @method confint blblm
 confint.blblm <- function(object, parm = NULL, level = 0.95, ...) {
@@ -131,6 +151,13 @@ confint.blblm <- function(object, parm = NULL, level = 0.95, ...) {
   out
 }
 
+#' @param object
+#'
+#' @param new_data
+#' @param confidence
+#' @param level
+#' @param ...
+#'
 #' @export
 #' @method predict blblm
 predict.blblm <- function(object, new_data, confidence = FALSE, level = 0.95, ...) {
